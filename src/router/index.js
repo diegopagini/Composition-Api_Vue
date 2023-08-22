@@ -22,6 +22,11 @@ const routes = [
 		name: 'counter',
 		component: () => import(/* webpackChunkName: "counter" */ '../views/CounterView.vue'),
 	},
+	{
+		path: '/users',
+		name: 'users',
+		component: () => import(/* webpackChunkName: "users" */ '../views/UsersView.vue'),
+	},
 ];
 
 const router = createRouter({
