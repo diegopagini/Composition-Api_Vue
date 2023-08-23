@@ -38,7 +38,12 @@ export default createStore({
 			}
 		},
 	},
-	mutations: {},
+	mutations: {
+		toggleTodo(state, id) {
+			const todoIndex = state.todos.findIndex((todo) => todo.id === id);
+			state.todos.at(todoIndex).completed = !state.todos.at(todoIndex).completed;
+		},
+	},
 	actions: {},
 	modules: {},
 });
