@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	import { useRoute } from 'vue-router';
+	import { useRoute, onBeforeRouteLeave } from 'vue-router';
 	import usePokemon from '@/composables/usePokemon';
 	import { watch } from 'vue';
 
@@ -29,6 +29,11 @@
 				() => route.params.id,
 				(value) => searchPokemon(value)
 			);
+
+			onBeforeRouteLeave(() => {
+				const answer = window.confirm('¿Está seguro que desea salir?');
+				if (!answer) return false; // False bocks the exit
+			});
 
 			return {
 				errorMessage,
