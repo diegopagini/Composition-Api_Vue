@@ -28,8 +28,8 @@ const routes = [
 		component: () => import(/* webpackChunkName: "users" */ '../views/UsersView.vue'),
 	},
 	{
-		path: '/pokemon',
-		name: 'pokemon',
+		path: '/search-pokemon',
+		name: 'search-pokemon',
 		component: () => import(/* webpackChunkName: "pokemon" */ '../views/SearchPokemonView.vue'),
 	},
 	{

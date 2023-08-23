@@ -5,9 +5,9 @@
 
 	<form @submit.prevent="onSubmit">
 		<input
-			type="number"
 			placeholder="Número del pokémon"
-			autofocus
+			ref="textSearchId"
+			type="number"
 			v-model="pokemonId"
 		/>
 	</form>
@@ -17,16 +17,22 @@
 </template>
 
 <script>
-	import { ref } from 'vue';
+	import { ref, onActivated } from 'vue';
 	import { useRouter } from 'vue-router';
 
 	export default {
 		setup() {
-			const router = useRouter();
 			const pokemonId = ref(1);
+			const router = useRouter();
+			const textSearchId = ref();
+
+			onActivated(() => {
+				textSearchId.value.select();
+			});
 
 			return {
 				pokemonId,
+				textSearchId,
 				// Methods
 				onSubmit: () => {
 					router.push({ name: `pokemon-id`, params: { id: pokemonId.value } });
