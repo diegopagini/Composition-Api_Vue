@@ -5,9 +5,13 @@
 		<div class="modal-container">
 			<!-- <slot /> -->
 
-			<slot>
+			<!-- <slot>
 				<div class="center">Esto aparecerá si no tenemos contenido</div>
-			</slot>
+			</slot> -->
+
+			<slot name="header" />
+			<slot name="body" />
+			<slot name="footer" />
 		</div>
 	</div>
 </template>
