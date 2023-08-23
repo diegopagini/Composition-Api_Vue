@@ -5,7 +5,8 @@
 		<router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
 		<router-link :to="{ name: 'counter' }">Counter</router-link> |
 		<router-link :to="{ name: 'users' }">Users</router-link> |
-		<router-link :to="{ name: 'search-pokemon' }">Pokemon</router-link>
+		<router-link :to="{ name: 'search-pokemon' }">Pokemon</router-link> |
+		<router-link :to="{ name: 'todo' }">Thanos</router-link>
 	</nav>
 
 	<!-- This is to keep the information from the component event when we change the route -->
