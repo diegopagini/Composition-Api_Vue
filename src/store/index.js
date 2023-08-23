@@ -25,6 +25,18 @@ export default createStore({
 		allTodos: (state) => [...state.todos],
 		completedTodos: (state) => [...state.todos.filter((todo) => todo.completed)],
 		pendingTodos: (state) => [...state.todos.filter((todo) => !todo.completed)],
+		getTodosByTab: (_, getters) => (tab) => {
+			switch (tab) {
+				case 'all':
+					return getters.allTodos;
+
+				case 'completed':
+					return getters.completedTodos;
+
+				case 'pending':
+					return getters.pendingTodos;
+			}
+		},
 	},
 	mutations: {},
 	actions: {},
