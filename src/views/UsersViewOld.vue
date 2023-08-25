@@ -7,13 +7,15 @@
 	<h3 v-if="errorMessage">{{ errorMessage }}</h3>
 
 	<div v-if="users.length > 0">
-		<user-list
-			:users="users"
-			v-slot="{ user }"
-		>
-			<h5>{{ user.first_name }} {{ user.last_name }}</h5>
-			<span>{{ user.email }}</span>
-		</user-list>
+		<ul>
+			<li
+				v-for="user of users"
+				:key="user.id"
+			>
+				<h4>{{ user.first_name }} {{ user.last_name }}</h4>
+				<h6>{{ user.email }}</h6>
+			</li>
+		</ul>
 	</div>
 
 	<button @click="previousPage">Atras</button>
@@ -26,12 +28,9 @@
 
 <script>
 	import useUsers from '@/composables/useUsers';
-	import { defineAsyncComponent, onMounted } from 'vue';
+	import { onMounted } from 'vue';
 
 	export default {
-		components: {
-			UserList: defineAsyncComponent(() => import('@/components/UserList.vue')),
-		},
 		setup() {
 			const { currentPage, errorMessage, isLoading, users, nextPage, previousPage, getUsers } =
 				useUsers();
@@ -62,5 +61,15 @@
 		display: flex;
 		justify-content: center;
 		text-align: center;
+	}
+
+	ul {
+		margin: unset;
+		padding: unset;
+		width: 250px;
+	}
+
+	li {
+		list-style: none;
 	}
 </style>

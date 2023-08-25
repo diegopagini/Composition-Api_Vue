@@ -38,16 +38,59 @@
 			</li>
 		</ul>
 	</div>
+
+	<button @click="isOpen = true">Crear TODO</button>
+
+	<modal
+		v-if="isOpen"
+		title="form"
+		@on:close="isOpen = false"
+	>
+		<template v-slot:header>
+			<h1>Nueva tarea</h1>
+		</template>
+
+		<template v-slot:body>
+			<form
+				@submit.prevent="
+					createTodo(newTodoText);
+					isOpen = false;
+				"
+			>
+				<input
+					type="text"
+					placeholder="Nueva tarea"
+					v-model="newTodoText"
+				/>
+
+				<br />
+
+				<button type="submit">Crear</button>
+			</form>
+		</template>
+	</modal>
 </template>
 
 <script>
 	import useTodos from '@/composables/useTodos';
+	import { defineAsyncComponent } from 'vue';
+	import { ref } from 'vue';
 
 	export default {
+		components: { modal: defineAsyncComponent(() => import('@/components/Modal.vue')) },
 		setup() {
-			const { currentTab, getTodosByTab, toggleTodo, pending } = useTodos();
+			const { currentTab, getTodosByTab, toggleTodo, pending, createTodo } = useTodos();
 
-			return { currentTab, getTodosByTab, toggleTodo, pending };
+			return {
+				createTodo,
+				currentTab,
+				getTodosByTab,
+				pending,
+				toggleTodo,
+
+				isOpen: ref(false),
+				newTodoText: ref(''),
+			};
 		},
 	};
 </script>
